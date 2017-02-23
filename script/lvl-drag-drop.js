@@ -74,9 +74,8 @@ module.directive('lvlDropTarget', ['$rootScope', 'uuid', function($rootScope, uu
                 var oe = e.originalEvent || e;
                 var data = oe.dataTransfer.getData('text/plain');
                 var dest = document.getElementById(id);
-                var src = document.getElementById(data);
-                var target = angular.element(dest).offset();
-                scope.onDrop({ dragId: data, dropId: id, relativePos: { x: e.clientX - target.left, y: e.clientY - target.top } });
+                var targetOffset = angular.element(dest).offset();
+                scope.onDrop({ dragId: data, dropId: id, relativePos: { x: e.clientX - targetOffset.left, y: e.clientY - targetOffset.top } });
             });
 
             $rootScope.$on('LVL-DRAG-START', function() {
