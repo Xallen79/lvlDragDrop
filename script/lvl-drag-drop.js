@@ -15,11 +15,14 @@ module.directive('lvlDraggable', ['$rootScope', 'uuid', function($rootScope, uui
 
             el.bind('dragstart', function(e) {
                 var oe = e.originalEvent || e;
+                angular.element(oe.target).addClass("lvl-moving");
                 oe.dataTransfer.setData('text/plain', id);
                 $rootScope.$emit('LVL-DRAG-START');
             });
 
             el.bind('dragend', function(e) {
+                var oe = e.originalEvent || e;
+                angular.element(oe.target).removeClass("lvl-moving");
                 $rootScope.$emit('LVL-DRAG-END');
             });
         }
